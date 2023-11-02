@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 
 typedef struct digit{
     int value;
@@ -22,6 +23,7 @@ Digit *initDigit(int digit){
 }
 
 void initUnboundedInt(int SIZE,UnboundedInt *number){
+    
     Digit *curr;
     int d; 
     number->size = SIZE;
@@ -41,11 +43,12 @@ void displayUnboundedInt(UnboundedInt *number){
 }
 
 int main(){
+    srand(time(NULL));
     UnboundedInt *number = (UnboundedInt*) malloc(sizeof(UnboundedInt));
     if (number==NULL){
         exit(2);
     }
     initUnboundedInt(10,number);
-    
+    displayUnboundedInt(number);
     return 0;
 }
