@@ -26,7 +26,7 @@ void initUnboundedInt(int SIZE,UnboundedInt *number){
     Digit *curr;
     int d; 
     number->size = SIZE;
-    number->head = initDigit(d%2); //random sign
+    number->head = initDigit(d%2); //random sign -> 0 is negative, 1 is positive
     for(int i=0;i<SIZE;i++){
         d = rand() % 10;// random from 0 to 9
         curr->next = initDigit(d);
@@ -89,7 +89,7 @@ int main(){
     srand(time(NULL));
     UnboundedInt *number = (UnboundedInt*) malloc(sizeof(UnboundedInt));
     if (number==NULL){exit(2);}
-    
+
     initUnboundedInt(100,number);
     insertDigit(number,1,9);
     deleteDigit(number,2);
