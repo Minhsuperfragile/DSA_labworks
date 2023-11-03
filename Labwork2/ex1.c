@@ -86,15 +86,15 @@ void deleteDigit(UnboundedInt *number,int position){
 }
 
 int main(){
-    srand(time(NULL));
+    srand(time(NULL));//set seed for random function
     UnboundedInt *number = (UnboundedInt*) malloc(sizeof(UnboundedInt));
     if (number==NULL){exit(2);}
-
-    initUnboundedInt(100,number);
-    insertDigit(number,1,9);
-    deleteDigit(number,2);
+    initUnboundedInt(100,number); // create a random number with 100 digits
+    insertDigit(number,1,9); // insert 9 to the first place, replace any 0 that might happen
+    deleteDigit(number,2); // delete the 2 second digits, which was at the first place before inserting 9
+    // this 2 lines mean that I replace the first digit with 9
     displayUnboundedInt(number);
     printf("\n%d",calculateAllDigits(number));
-    deleteEntireNumber(number);
+    deleteEntireNumber(number);// clear memory
     return 0;
 }
