@@ -23,32 +23,78 @@ Digit *initDigit(int digit){
 }
 
 void initUnboundedInt(int SIZE,UnboundedInt *number){
-    
     Digit *curr;
     int d; 
     number->size = SIZE;
-    number->head = initDigit(1);
-    number->head->next = curr;
+    number->head = initDigit(d%2); //random sign
     for(int i=0;i<SIZE;i++){
         d = rand() % 10;// random from 0 to 9
         curr->next = initDigit(d);
         curr = curr->next;
+        if(i==0){
+            number->head->next = curr;
+        }
     }
 }
 
 void displayUnboundedInt(UnboundedInt *number){
-    for(Digit *root = number->head;root!=NULL;root = root->next){
-        printf("%d ",root->value);
+    if(number->head->value != 1){
+        printf("-");
     }
+    for(Digit *root = number->head->next;root!=NULL;root = root->next){
+        printf("%d",root->value);
+    }
+}
+
+void deleteEntireNumber(UnboundedInt *number){
+    Digit *curr = number->head;
+    while(curr!=NULL){
+        Digit *support = curr;
+        curr = curr->next;
+        free(support);
+    }
+    number = NULL;
+}
+
+int calculateAllDigits(UnboundedInt *number){
+    int sum = 0;
+    for(Digit *root = number->head->next;root!=NULL;root = root->next){
+        sum += root->value;  
+    }
+    return sum;
+}
+
+void insertDigit(UnboundedInt *number,int position, int digit){
+    Digit *curr = number->head;
+    for(int i=0;i<position-1;i++){
+        curr = curr->next;
+    }
+    Digit *support = curr->next;
+    Digit *newDigit = initDigit(digit);
+    curr->next = newDigit;
+    newDigit->next = support;
+}
+
+void deleteDigit(UnboundedInt *number,int position){
+    Digit *curr = number->head;
+    for(int i=0;i<position-1;i++){
+        curr = curr->next;
+    }
+    Digit *support = curr->next;
+    curr->next = support->next;
+    free(support);
 }
 
 int main(){
     srand(time(NULL));
     UnboundedInt *number = (UnboundedInt*) malloc(sizeof(UnboundedInt));
-    if (number==NULL){
-        exit(2);
-    }
-    initUnboundedInt(10,number);
+    if (number==NULL){exit(2);}
+    
+    initUnboundedInt(100,number);
+    insertDigit(number,1,9);
+    deleteDigit(number,2);
     displayUnboundedInt(number);
+    printf("\n%d",calculateAllDigits(number));
+    deleteEntireNumber(number);
     return 0;
 }
