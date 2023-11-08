@@ -12,7 +12,7 @@ typedef struct _item {
 typedef struct _customers{
 	int quantity;
 	Item *item;
-	struct _customerQueue *next;
+	struct _customers *next;
 }Customer;
 
 typedef struct _customerQueue{
@@ -24,10 +24,6 @@ Item initItem(int q, float p, char n[]){
 	Item newItem;
 	newItem.price = p;
 	newItem.quantity = q;
-	int s = sizeof(n)/sizeof(n[0]);
-	if (s>20){
-		exit(1);
-	}
 	strcpy(newItem.name,n);
 	return newItem;
 }
