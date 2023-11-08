@@ -28,7 +28,7 @@ Item initItem(int q, float p, char n[]){
 	if (s>20){
 		exit(1);
 	}
-	strncpy(newItem.name,n,s);
+	strcpy(newItem.name,n);
 	return newItem;
 }
 
