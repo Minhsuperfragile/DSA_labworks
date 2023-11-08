@@ -94,7 +94,7 @@ int main(){
     deleteDigit(number,2); // delete the 2 second digits, which was at the first place before inserting 9
     // this 2 lines mean that I replace the first digit with 9
     displayUnboundedInt(number);
-    printf("\n%d",calculateAllDigits(number));
+    printf("\nSum of all digits is %d",calculateAllDigits(number));
     deleteEntireNumber(number);// clear memory
     return 0;
 }

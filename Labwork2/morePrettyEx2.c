@@ -112,7 +112,6 @@ int main (){
         exit(2);
     }
     initTrain(kesshokuBand,8);
-
     addNewCar(kesshokuBand);
     rmCarWithNoPassenger(kesshokuBand);
 	printf("----------");
