@@ -18,6 +18,7 @@ typedef struct _customers{
 typedef struct _customerQueue{
 	int size;
 	Customer *first;
+	Customer *last;
 }CustomerQueue;
 
 Item initItem(int q, float p, char n[]){
@@ -31,6 +32,7 @@ Item initItem(int q, float p, char n[]){
 void initCQ(CustomerQueue *cq){
 	cq->size = 0;
 	cq->first = NULL;
+	cq->last = cq->first;
 }
 
 void addCustomer(CustomerQueue *cq,Item *i,int q){
@@ -40,13 +42,11 @@ void addCustomer(CustomerQueue *cq,Item *i,int q){
 	newCustomer->next = NULL;
 	if (cq->first == NULL){
 		cq->first = newCustomer;
+		cq->last = cq->first;
 	}
 	else {
-		Customer *curr = cq->first;
-		while(curr->next!=NULL){
-			curr = curr->next;
-		}
-		curr->next = newCustomer;
+		cq->last->next = newCustomer;
+		cq->last = cq->last->next;
 	}
 	cq->size++;
 } 
@@ -87,21 +87,24 @@ void freeQueue(CustomerQueue *cq){
 int main(){
 	srand(time(NULL));
 	Item itemList[3];
-	itemList[0] = initItem(100,12.99,"Apples");
-	itemList[1] = initItem(59,14.99,"Oranges");
-	itemList[2] = initItem(20,99.99,"Cocktails");
+	itemList[0] = initItem(50,12.99,"Apples");
+	itemList[1] = initItem(20,14.99,"Oranges");
+	itemList[2] = initItem(9,99.99,"Cocktails");
 	
 	CustomerQueue *queue = (CustomerQueue*) malloc(sizeof(CustomerQueue));
 	initCQ(queue);
+
 	for (int i=0;i<8;i++){
 		int randomItem = rand() % 3;
 		int q = rand() % 15;
 		addCustomer(queue,&itemList[randomItem],q+1);
 	}
+	printf("--------------------\n");
 	purchaseCustomer(queue);
 	purchaseCustomer(queue);
 	purchaseCustomer(queue);
-	
+	printf("--------------------\n");
 	displayCustomerQueue(queue);
-	freeQueue(queue); free(queue);
+	freeQueue(queue); 
+	free(queue);
 }
