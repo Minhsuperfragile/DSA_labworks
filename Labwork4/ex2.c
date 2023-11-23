@@ -13,6 +13,7 @@ int checkPalindrome(int arr[],int start,int end){
 		checkPalindrome(arr,start+1,end-1);
 	}
 }
+// the complexity is O(n)
 
 int main(){
 	int arr[] = {3,2,4,1,5,2,3};
