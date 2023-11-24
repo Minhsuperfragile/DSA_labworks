@@ -28,7 +28,7 @@ void insertIntAtRightPosition(int array[],int value,int amountOfValueInArray){
 
 int main(){
 	srand(time(NULL));
-	int arr[100], seed = 2;
+	int arr[20], seed = 2;
 	for (int i=0;i<15;i++){ // create 15 values in array
 		seed = seed + rand() % 15; // random ascending 
 		if (seed == arr[i-1]){
