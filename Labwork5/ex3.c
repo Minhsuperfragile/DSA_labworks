@@ -1,6 +1,8 @@
+#define _CRTDBG_MAP_ALLOC
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
+#include <crtdbg.h>
 
 typedef struct _node{
     int value;
@@ -62,7 +64,7 @@ void freeLinkedList(LinkedList *list){
 	}
 }
 
-Node *binarySearch(LinkedList *list,int item){
+Node *binarySearch(LinkedList *list,int item){ // this function cannot sort to the first and last element in list
     Node *current = list->head;
     int count = 1;
     int mid = floor(list->size/pow(2,count));
@@ -101,7 +103,7 @@ Node *binarySearch(LinkedList *list,int item){
     return current;
 }
 
-void *insertionSort(LinkedList *list,LinkedList *sortedList){
+void insertionSort(LinkedList *list,LinkedList *sortedList){
     Node *current, *temp, *auxilary;
     int maxValue;
     insertNodeAtTheEnd(sortedList,createNode(list->head->value));
@@ -195,6 +197,9 @@ int main(){
     displayLinkedList(anotherList);
 
     freeLinkedList(anotherList);
+    free(myList->head);
     free(myList);
     free(anotherList);
+ 
+    _CrtDumpMemoryLeaks();
 }
