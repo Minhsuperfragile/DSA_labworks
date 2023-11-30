@@ -1,9 +1,13 @@
 #include <stdio.h>
 
+void swap(int *a, int *b){
+    int temp = *a;
+    *a = *b;
+    *b = temp;
+}
+
 int main(){
-    int a = 5, b = 7;
-    a = a + b;
-    b = a - b;
-    a = a - b;
-    printf("a=%d b=%d",a,b);
+    int low = 4, high = 3;
+    swap(&low,&high);
+    printf("High: %d, Low: %d",high,low);
 }

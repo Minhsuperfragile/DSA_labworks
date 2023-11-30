@@ -1,8 +1,6 @@
-#define _CRTDBG_MAP_ALLOC
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
-#include <crtdbg.h>
 
 typedef struct _node{
     int value;
@@ -200,6 +198,4 @@ int main(){
     free(myList->head);
     free(myList);
     free(anotherList);
- 
-    _CrtDumpMemoryLeaks();
 }
