@@ -50,7 +50,7 @@ void fermat(int n){
 
     printf("%d*%d",x,y);
 
-}
+} // n log n
 
 int main(){
 
