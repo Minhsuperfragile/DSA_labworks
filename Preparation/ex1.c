@@ -26,3 +26,5 @@ int main(){
     loop(array,0,1,2,20);
     return 0;
 }
+
+// improve : calculate a^2 - ab + b^2, if it is not a perfect square, we can skip to the next iteration
